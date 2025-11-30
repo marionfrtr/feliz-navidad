@@ -3,67 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario de Adviento Pixel 8-bit 🕹️</title>
+    <title>Protocolo de Adviento [V. 2.5.1] 🎁</title>
     
     <style>
-        /* Fuente Pixel-Art (ejemplo: Press Start 2P) */
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
         :root {
-            --red: #D62828; /* Rojo 8-bit */
-            --green: #298E46; /* Verde 8-bit */
-            --yellow: #FFC000; /* Dorado/Amarillo Pixel */
-            --dark-blue: #1A3263; /* Fondo Geeky */
+            --santa-red: #D62828; 
+            --elf-green: #298E46; 
+            --gold-star: #FFC000; 
+            --deep-code: #1E1E1E; /* Fondo oscuro de consola */
             --white: #F0F0F0;
+            --terminal-green: #00FF00; /* Verde de terminal */
         }
 
         body {
             font-family: 'Press Start 2P', cursive;
-            background-color: var(--dark-blue);
-            color: var(--white);
+            background-color: var(--deep-code);
+            color: var(--terminal-green); /* Color de texto de terminal */
             text-align: center;
             margin: 0;
             padding: 20px;
-            /* Fondo con patrón de bloques/pixels */
-            background-image: linear-gradient(45deg, var(--dark-blue) 25%, transparent 25%),
-                              linear-gradient(-45deg, var(--dark-blue) 25%, transparent 25%),
-                              linear-gradient(45deg, transparent 75%, var(--dark-blue) 75%),
-                              linear-gradient(-45deg, transparent 75%, var(--dark-blue) 75%);
-            background-size: 40px 40px;
-            background-color: var(--dark-blue);
+            /* Patrón de fondo que simula un código binario o la nieve cayendo */
+            background-image: radial-gradient(var(--elf-green) 1px, transparent 1px),
+                              radial-gradient(var(--santa-red) 1px, var(--deep-code) 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
         }
 
         header h1 {
             font-size: 2.5em;
-            color: var(--yellow);
-            text-shadow: 4px 4px var(--red);
+            color: var(--gold-star);
+            text-shadow: 4px 4px var(--santa-red);
             margin-bottom: 5px;
         }
 
         header p {
             font-size: 0.8em;
             margin-bottom: 40px;
+            color: var(--white);
         }
 
         /* Grilla del Calendario */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 10px; /* Menos espacio para parecer más "compacto" */
+            gap: 10px;
             max-width: 900px;
             margin: 0 auto;
             padding: 15px;
-            background-color: rgba(0, 0, 0, 0.4);
-            border: 5px solid var(--yellow); /* Borde Pixelado */
-            box-shadow: 8px 8px 0px var(--green); /* Sombra 8-bit */
+            background-color: rgba(255, 255, 255, 0.1); /* Transparente blanco para simular hielo/nieve */
+            border: 5px solid var(--elf-green); 
+            box-shadow: 0 0 10px var(--gold-star); 
         }
 
         /* Estilo de las Puertas/Casillas */
         .door {
             position: relative;
             height: 100px;
-            background-color: var(--red);
-            border: 3px solid var(--white);
+            background-color: var(--santa-red);
+            border: 3px solid var(--gold-star);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -73,31 +72,26 @@
             cursor: default;
             transition: transform 0.1s ease, box-shadow 0.1s ease;
             user-select: none;
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* Simulación de borde cuadrado pixelado */
+            box-shadow: 4px 4px 0px var(--elf-green); /* Sombra 8-bit navideña */
             padding: 0;
         }
 
         /* Estilo específico para la Puerta 1 (activa) */
         #door-1 {
             cursor: pointer;
-            background-color: var(--green);
-            border-color: var(--yellow);
+            background-color: var(--elf-green);
+            border-color: var(--gold-star);
         }
 
         #door-1:hover {
-            transform: translate(-2px, -2px); /* Efecto de "presionado" */
-            box-shadow: 4px 4px 0px var(--red);
+            transform: translate(-2px, -2px); 
+            box-shadow: 6px 6px 0px var(--santa-red);
         }
         
-        /* Efecto de rotación para las demás (solo visual) */
-        .door:not(#door-1) {
-            transform: skewX(1deg) rotate(0.5deg);
-        }
-
         /* Número de la Casilla */
         .door-number {
             z-index: 1;
-            text-shadow: 2px 2px var(--dark-blue);
+            text-shadow: 2px 2px var(--deep-code);
         }
 
 
@@ -111,68 +105,68 @@
             width: 100%; 
             height: 100%; 
             overflow: auto; 
-            background-color: rgba(0,0,0,0.9); /* Fondo muy oscuro */
+            background-color: rgba(0,0,0,0.95);
             backdrop-filter: blur(2px);
             padding-top: 50px;
         }
 
         .modal-content {
-            background-color: var(--dark-blue);
-            color: var(--white);
+            background-color: var(--deep-code);
+            color: var(--terminal-green);
             margin: 5% auto;
             padding: 20px;
-            border: 4px solid var(--yellow);
+            border: 4px dashed var(--white); /* Borde de código */
             width: 80%; 
             max-width: 500px;
-            box-shadow: 0 0 0 5px var(--red); /* Borde doble pixelado */
-            animation: glitchEffect 0.5s ease-in-out;
+            box-shadow: 0 0 15px var(--elf-green);
+            animation: typeEffect 1.5s steps(30, end) forwards;
+            overflow: hidden; /* Oculta el texto hasta que se "teclee" */
+            white-space: pre-wrap;
+            text-align: left;
         }
         
-        /* Animación de Glitch (para el toque Geek) */
-        @keyframes glitchEffect {
-            0% { transform: translate(1px, 1px); opacity: 0.9; }
-            25% { transform: translate(-1px, 0px); opacity: 0.8; }
-            50% { transform: translate(1px, -1px); opacity: 0.9; }
-            75% { transform: translate(-1px, 1px); opacity: 0.8; }
-            100% { transform: translate(0, 0); opacity: 1; }
+        /* Animación de Typewriter (para el toque de consola) */
+        @keyframes typeEffect {
+            from { width: 0 }
+            to { width: 100% }
         }
 
         .modal-content h2 {
-            color: var(--green);
-            font-size: 1.5em;
-            border-bottom: 2px solid var(--yellow);
+            color: var(--gold-star);
+            font-size: 1.2em;
+            border-bottom: 2px solid var(--santa-red);
             padding-bottom: 5px;
+            margin-bottom: 10px;
         }
 
         .modal-content p {
-            font-size: 0.7em;
+            font-size: 0.6em;
             line-height: 1.8;
-            padding-top: 10px;
+            padding-top: 5px;
         }
 
         /* Botón de Cierre (X) */
         .close-button {
-            color: var(--yellow);
+            color: var(--santa-red);
             float: right;
             font-size: 30px;
             font-weight: bold;
             line-height: 1;
             padding-left: 10px;
+            cursor: pointer;
         }
 
         .close-button:hover,
         .close-button:focus {
-            color: var(--red);
-            text-decoration: none;
-            cursor: pointer;
+            color: var(--elf-green);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>A V I E N T O . E X E</h1>
-        <p>Presiona el bloque para iniciar la secuencia (Solo el día 1 está activo)</p>
+        <h1>[ SANTA-OS ] V. 12.24.2025</h1>
+        <p>Ejecuta la rutina de descompresión de datos (Solo Casilla 1 responde)</p>
     </header>
 
     <main class="calendar-grid">
@@ -208,47 +202,60 @@
     <div id="popup-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
-            <h2>[Nivel 01 Desbloqueado] 💾</h2>
-            <p>¡FELICIDADES, USUARIO! Has encontrado el primer huevo de Pascua digital. El sistema de recompensa está inicializado.</p>
-            <p><strong>Dato Geek del Día:</strong> ¿Sabías que el primer videojuego interactivo con gráficos, "Tennis for Two", se mostró en un osciloscopio en 1958?</p>
-            <p>¡Misión cumplida!</p>
+            <h2>>> Ejecutando Día 1: 'Inicio_De_Ruta.bin'</h2>
+            <p>
+                [00:01] INFO: Diciembre 01, 2025. ¡Proceso de Adviento **iniciado**!<br>
+                [00:03] LOG: `Verificando estado del servidor Polo Norte... [OK]`<br>
+                [00:05] WARNING: Se ha detectado una alta concentración de **azúcar** en el sector de galletas.<br>
+                [00:08] DATA: El primer regalo del día es un **manual de usuario** para un trineo auto-conducido. ¡A programar!<br>
+                [00:10] EXIT: Proceso 'Dia_1.exe' **finalizado** con éxito. Cierre para continuar.
+            </p>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Selección de elementos
             const door1 = document.getElementById('door-1');
             const modal = document.getElementById('popup-modal');
             const closeButton = document.querySelector('.close-button');
 
-            // 2. Abrir el modal al hacer clic en la Casilla 1
+            // 1. Abrir el modal (Case 1)
             if (door1) {
                 door1.addEventListener('click', () => {
                     modal.style.display = 'block';
                 });
             }
 
-            // 3. Cerrar el modal con el botón (X)
+            // 2. Cerrar el modal (X)
             if (closeButton) {
                 closeButton.addEventListener('click', () => {
                     modal.style.display = 'none';
                 });
             }
 
-            // 4. Cerrar el modal al hacer clic fuera
+            // 3. Cerrar el modal (click fuera)
             window.addEventListener('click', (event) => {
                 if (event.target === modal) {
                     modal.style.display = 'none';
                 }
             });
 
-            // 5. Efectos visuales aleatorios (rotación leve)
+            // 4. Efectos visuales aleatorios (rotación leve)
             const doors = document.querySelectorAll('.door');
             doors.forEach(door => {
-                // Pequeña rotación aleatoria para el efecto "código inestable"
-                const randomRotation = Math.floor(Math.random() * 4) - 2; // Entre -2deg y 2deg
+                const randomRotation = Math.floor(Math.random() * 4) - 2;
                 door.style.transform = `rotate(${randomRotation}deg)`;
+            });
+
+            // 5. Consola Geeks: Simular logs de errores en la consola (Ctrl+Shift+I)
+            console.log("%c[SYSTEM] Protocolo de Adviento iniciado. Versión: 2.5.1", "color: #00FF00; font-weight: bold;");
+
+            const nonActiveDoors = document.querySelectorAll('.door:not(#door-1)');
+            nonActiveDoors.forEach(door => {
+                door.addEventListener('click', () => {
+                    console.error(`ERROR 404: Archivo 'Sorpresa_Dia_${door.dataset.day}.dat' NO ENCONTRADO o aún está encriptado.`);
+                    console.warn("ADVERTENCIA: Intento de acceso denegado. Se requiere clave de fecha.");
+                });
             });
         });
     </script>
