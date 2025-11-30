@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier de l'Avent de Noël 🎅</title>
+    
+    <style>
+        /* Importation d'une police Google Fonts pour le style */
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;700&display=swap');
+
+        :root {
+            --red: #C0392B; /* Rouge de Noël */
+            --green: #27AE60; /* Vert de Noël */
+            --gold: #F1C40F; /* Or */
+            --white: #ECF0F1;
+            --dark-green: #1E8449;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--dark-green);
+            color: var(--white);
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-image: repeating-linear-gradient(45deg, var(--dark-green), var(--dark-green) 10px, var(--green) 10px, var(--green) 20px);
+        }
+
+        header h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4em;
+            color: var(--gold);
+            text-shadow: 3px 3px var(--red);
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        /* Grille du Calendrier */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* 6 colonnes */
+            gap: 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.2); /* Fond semi-transparent */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Style des Cases (Portes) */
+        .door {
+            position: relative;
+            height: 120px;
+            background-color: var(--red);
+            border: 5px solid var(--gold);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--white);
+            cursor: default; /* Curseur par défaut pour les cases non cliquables */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            user-select: none;
+            padding: 0;
+        }
+
+        /* Style spécifique pour la Case 1 (le bouton cliquable) */
+        #door-1 {
+            cursor: pointer; /* Curseur main pour indiquer l'interactivité */
+            background-color: var(--green);
+            border-color: var(--gold);
+        }
+
+        #door-1:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--gold);
+        }
+
+        /* Numéro de la Case */
+        .door-number {
+            z-index: 1;
+            text-shadow: 2px 2px var(--dark-green);
+        }
+
+        /* --- Style du Pop-up (Modale) --- */
+
+        /* Le fond de la modale */
+        .modal {
+            display: none; /* Caché par défaut */
+            position: fixed; 
+            z-index: 10; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.8); /* Noir avec opacité */
+            padding-top: 50px;
+        }
+
+        /* Le contenu de la modale */
+        .modal-content {
+            background-color: var(--white);
+            color: #333;
+            margin: 5% auto; /* 5% du haut et centré horizontalement */
+            padding: 30px;
+            border: 5px solid var(--red);
+            width: 80%; 
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            animation: fadeIn 0.5s;
+        }
+
+        /* Animation d'apparition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-content h2 {
+            color: var(--red);
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5em;
+            border-bottom: 2px solid var(--green);
+            padding-bottom: 10px;
+        }
+
+        .modal-content p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        /* Bouton de Fermeture */
+        .close-button {
+            color: var(--red);
+            float: right;
+            font-size: 35px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--green);
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Calendrier de l'Avent</h1>
+        <p>Cliquez sur les cases pour découvrir les surprises ! (Seule la Case 1 est active)</p>
+    </header>
+
+    <main class="calendar-grid">
+        <button class="door" id="door-1" data-day="1">
+            <span class="door-number">1</span>
+        </button>
+
+        <div class="door" data-day="2"><span class="door-number">2</span></div>
+        <div class="door" data-day="3"><span class="door-number">3</span></div>
+        <div class="door" data-day="4"><span class="door-number">4</span></div>
+        <div class="door" data-day="5"><span class="door-number">5</span></div>
+        <div class="door" data-day="6"><span class="door-number">6</span></div>
+        <div class="door" data-day="7"><span class="door-number">7</span></div>
+        <div class="door" data-day="8"><span class="door-number">8</span></div>
+        <div class="door" data-day="9"><span class="door-number">9</span></div>
+        <div class="door" data-day="10"><span class="door-number">10</span></div>
+        <div class="door" data-day="11"><span class="door-number">11</span></div>
+        <div class="door" data-day="12"><span class="door-number">12</span></div>
+        <div class="door" data-day="13"><span class="door-number">13</span></div>
+        <div class="door" data-day="14"><span class="door-number">14</span></div>
+        <div class="door" data-day="15"><span class="door-number">15</span></div>
+        <div class="door" data-day="16"><span class="door-number">16</span></div>
+        <div class="door" data-day="17"><span class="door-number">17</span></div>
+        <div class="door" data-day="18"><span class="door-number">18</span></div>
+        <div class="door" data-day="19"><span class="door-number">19</span></div>
+        <div class="door" data-day="20"><span class="door-number">20</span></div>
+        <div class="door" data-day="21"><span class="door-number">21</span></div>
+        <div class="door" data-day="22"><span class="door-number">22</span></div>
+        <div class="door" data-day="23"><span class="door-number">23</span></div>
+        <div class="door" data-day="24"><span class="door-number">24</span></div>
+    </main>
+
+    <div id="popup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Jour 1 : Bienvenue ! 🎁</h2>
+            <p>Félicitations ! Vous avez ouvert la première case de votre calendrier de l'Avent.</p>
+            <p>Le secret du jour : C'est la veille du jour où l'on décore traditionnellement le sapin de Noël !</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Sélection des éléments du DOM
+            const door1 = document.getElementById('door-1');
+            const modal = document.getElementById('popup-modal');
+            const closeButton = document.querySelector('.close-button');
+
+            // 2. Fonction pour ouvrir la modale (uniquement sur la case 1 pour l'instant)
+            if (door1) {
+                door1.addEventListener('click', () => {
+                    modal.style.display = 'block';
+                });
+            }
+
+            // 3. Fonction pour fermer la modale via le bouton (X)
+            if (closeButton) {
+                closeButton.addEventListener('click', () => {
+                    modal.style.display = 'none';
+                });
+            }
+
+            // 4. Fonction pour fermer la modale en cliquant en dehors
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // 5. BONUS : Ajouter des effets visuels sur toutes les cases
+            const doors = document.querySelectorAll('.door');
+            doors.forEach(door => {
+                // Ajout d'une petite rotation aléatoire pour un effet "fait main"
+                const randomRotation = Math.floor(Math.random() * 6) - 3; // Entre -3deg et 3deg
+                door.style.transform = `rotate(${randomRotation}deg)`;
+            });
+        });
+    </script>
+</body>
+</html>
