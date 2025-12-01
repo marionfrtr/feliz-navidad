@@ -1,57 +1,59 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kernel de Navidad Santa-Net v3.0 🎁</title>
+    <title>🎄 Cyber Advent Kernel v1.0 💻</title>
     
     <style>
-        @import url('https://fonts.com/css2?family=Press+Start+2P&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
         :root {
-            --santa-red: #C70039; /* Rojo de Papa Noel */
-            --elf-green: #008000; /* Verde de Elfo Clásico */
-            --gold-star: #FFD700; /* Oro Puro */
-            --deep-code: #1A1A1A; /* Negro Oscuro de Consola */
-            --snow-white: #FAFAFA;
-            --terminal-green: #00FF7F; /* Verde Claro de Terminal (Más festivo) */
+            --cyber-green: #0aff9d; 
+            --cyber-blue: #00c3ff;
+            --santa-red: #ff0033;
+            --gold-star: #FFD700;
+            --dark-terminal: #0a0a0a;
+            --snow: #f5f5f5;
         }
 
-        body {
-            font-family: 'Press Start 2P', cursive;
-            background-color: var(--deep-code);
-            color: var(--terminal-green); 
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-            /* Patrón de estrellas doradas y rojas sobre fondo verde oscuro */
-            background-color: var(--elf-green);
-            background-image: radial-gradient(var(--gold-star) 1px, transparent 1px),
-                              radial-gradient(var(--santa-red) 1px, var(--elf-green) 1px);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
-        }
+body {
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    color: #0aff9d;
+
+    background-color: #050505; /* base sombre */
+    background-image:
+        radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+        radial-gradient(rgba(0, 255, 150, 0.12) 1px, transparent 1px),
+        radial-gradient(rgba(255, 0, 70, 0.15) 1px, transparent 1px);
+    background-size: 40px 40px, 80px 80px, 120px 120px;
+}
+
+
+
 
         header h1 {
             font-size: 2.5em;
-            color: var(--snow-white);
-            text-shadow: 4px 4px var(--santa-red), 8px 8px var(--elf-green); /* Doble sombra navideña */
-            margin-bottom: 5px;
+            color: var(--cyber-blue);
+            text-shadow: 0px 0px 8px var(--cyber-green), 0px 0px 20px var(--santa-red);
         }
 
         header p {
             font-size: 0.8em;
             margin-bottom: 40px;
-            color: var(--snow-white);
-            animation: blink 1.5s infinite; /* Animación de parpadeo */
+            color: var(--snow);
+            animation: blink 1.5s infinite;
         }
-        
+
         @keyframes blink {
             0%, 49% { opacity: 1; }
             50%, 100% { opacity: 0.5; }
         }
 
-        /* Grilla del Calendario */
+        /* Grille */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
@@ -59,50 +61,45 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.15); /* Efecto Nieve/Hielo */
-            border: 6px solid var(--gold-star); 
-            box-shadow: 0 0 15px var(--santa-red); 
+            background-color: rgba(0, 255, 150, 0.1);
+            border: 3px solid var(--cyber-blue);
+            box-shadow: 0 0 25px var(--cyber-blue);
         }
 
-        /* Estilo de las Puertas/Casillas */
+        /* Cases */
         .door {
             position: relative;
             height: 100px;
             background-color: var(--santa-red);
-            border: 4px solid var(--snow-white);
+            border: 3px solid var(--snow);
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 2em;
-            font-weight: bold;
-            color: var(--snow-white);
+            color: var(--snow);
             cursor: default;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            user-select: none;
-            box-shadow: 6px 6px 0px var(--deep-code); 
-            padding: 0;
+            transition: 0.25s ease;
+            box-shadow: 5px 5px 0px #000;
         }
 
-        /* Estilo específico para la Puerta 1 (activa) */
+        /* Case active */
         #door-1 {
             cursor: pointer;
-            background-color: var(--elf-green);
+            background-color: var(--cyber-blue);
             border-color: var(--gold-star);
+            color: black;
         }
 
         #door-1:hover {
-            transform: translate(-3px, -3px); 
-            box-shadow: 9px 9px 0px var(--santa-red);
+            transform: translate(-3px, -3px);
+            box-shadow: 10px 10px 0px var(--santa-red);
         }
-        
-        /* Número de la Casilla */
+
         .door-number {
-            z-index: 1;
-            text-shadow: 2px 2px var(--deep-code);
+            text-shadow: 2px 2px #000;
         }
 
-
-        /* --- Estilo del Pop-up (Modal) --- */
+        /* Pop-up */
         .modal {
             display: none;
             position: fixed; 
@@ -111,160 +108,135 @@
             top: 0;
             width: 100%; 
             height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.98);
+            background-color: rgba(0,0,0,0.95);
             padding-top: 50px;
         }
 
         .modal-content {
-            background-color: var(--deep-code);
-            color: var(--terminal-green);
+            background-color: var(--dark-terminal);
+            color: var(--cyber-green);
             margin: 5% auto;
             padding: 25px;
-            border: 3px double var(--gold-star); /* Borde doble festivo */
+            border: 3px dashed var(--cyber-blue);
             width: 80%; 
             max-width: 550px;
-            box-shadow: 0 0 20px var(--elf-green);
-            animation: typeEffect 1.8s steps(40, end) forwards;
-            overflow: hidden; 
+            box-shadow: 0 0 20px var(--cyber-blue);
             white-space: pre-wrap;
-            text-align: left;
+            animation: typeEffect 2s steps(40, end);
         }
-        
+
         @keyframes typeEffect {
-            from { width: 0 }
-            to { width: 100% }
+            from { clip-path: inset(0 100% 0 0); }
+            to { clip-path: inset(0 0 0 0); }
         }
 
         .modal-content h2 {
-            color: var(--santa-red);
-            font-size: 1.2em;
+            color: var(--cyber-blue);
             border-bottom: 2px solid var(--gold-star);
-            padding-bottom: 5px;
             margin-bottom: 10px;
         }
 
         .modal-content p {
-            font-size: 0.6em;
+            font-size: 0.7em;
             line-height: 1.8;
-            padding-top: 5px;
         }
 
-        /* Botón de Cierre (X) */
         .close-button {
-            color: var(--snow-white);
+            color: var(--snow);
             float: right;
-            font-size: 30px;
-            font-weight: bold;
-            line-height: 1;
-            padding-left: 10px;
+            font-size: 28px;
             cursor: pointer;
-            text-shadow: 1px 1px var(--santa-red);
         }
 
-        .close-button:hover,
-        .close-button:focus {
-            color: var(--elf-green);
+        .close-button:hover {
+            color: var(--cyber-green);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Calendario de Advento</h1>
-        <p>Porque hace tiempo que quieres aprender más cosas sobre inteligencia artificial y data 🌟</p>
+<header>
+<h1>Calendario de Advento</h1>
+  <p>Porque hace tiempo que quieres aprender más cosas sobre inteligencia artificial y data 🌟</p>
    <p>Te quiero mi po</p>
+</header>
 
-    </header>
+<main class="calendar-grid">
+    <button class="door" id="door-1" data-day="1"><span class="door-number">1</span></button>
+    <div class="door" data-day="2"><span class="door-number">2</span></div>
+    <div class="door" data-day="3"><span class="door-number">3</span></div>
+    <div class="door" data-day="4"><span class="door-number">4</span></div>
+    <div class="door" data-day="5"><span class="door-number">5</span></div>
+    <div class="door" data-day="6"><span class="door-number">6</span></div>
+    <div class="door" data-day="7"><span class="door-number">7</span></div>
+    <div class="door" data-day="8"><span class="door-number">8</span></div>
+    <div class="door" data-day="9"><span class="door-number">9</span></div>
+    <div class="door" data-day="10"><span class="door-number">10</span></div>
+    <div class="door" data-day="11"><span class="door-number">11</span></div>
+    <div class="door" data-day="12"><span class="door-number">12</span></div>
+    <div class="door" data-day="13"><span class="door-number">13</span></div>
+    <div class="door" data-day="14"><span class="door-number">14</span></div>
+    <div class="door" data-day="15"><span class="door-number">15</span></div>
+    <div class="door" data-day="16"><span class="door-number">16</span></div>
+    <div class="door" data-day="17"><span class="door-number">17</span></div>
+    <div class="door" data-day="18"><span class="door-number">18</span></div>
+    <div class="door" data-day="19"><span class="door-number">19</span></div>
+    <div class="door" data-day="20"><span class="door-number">20</span></div>
+    <div class="door" data-day="21"><span class="door-number">21</span></div>
+    <div class="door" data-day="22"><span class="door-number">22</span></div>
+    <div class="door" data-day="23"><span class="door-number">23</span></div>
+    <div class="door" data-day="24"><span class="door-number">24</span></div>
+</main>
 
-    <main class="calendar-grid">
-        <button class="door" id="door-1" data-day="1">
-            <span class="door-number">1</span>
-        </button>
-
-        <div class="door" data-day="2"><span class="door-number">2</span></div>
-        <div class="door" data-day="3"><span class="door-number">3</span></div>
-        <div class="door" data-day="4"><span class="door-number">4</span></div>
-        <div class="door" data-day="5"><span class="door-number">5</span></div>
-        <div class="door" data-day="6"><span class="door-number">6</span></div>
-        <div class="door" data-day="7"><span class="door-number">7</span></div>
-        <div class="door" data-day="8"><span class="door-number">8</span></div>
-        <div class="door" data-day="9"><span class="door-number">9</span></div>
-        <div class="door" data-day="10"><span class="door-number">10</span></div>
-        <div class="door" data-day="11"><span class="door-number">11</span></div>
-        <div class="door" data-day="12"><span class="door-number">12</span></div>
-        <div class="door" data-day="13"><span class="door-number">13</span></div>
-        <div class="door" data-day="14"><span class="door-number">14</span></div>
-        <div class="door" data-day="15"><span class="door-number">15</span></div>
-        <div class="door" data-day="16"><span class="door-number">16</span></div>
-        <div class="door" data-day="17"><span class="door-number">17</span></div>
-        <div class="door" data-day="18"><span class="door-number">18</span></div>
-        <div class="door" data-day="19"><span class="door-number">19</span></div>
-        <div class="door" data-day="20"><span class="door-number">20</span></div>
-        <div class="door" data-day="21"><span class="door-number">21</span></div>
-        <div class="door" data-day="22"><span class="door-number">22</span></div>
-        <div class="door" data-day="23"><span class="door-number">23</span></div>
-        <div class="door" data-day="24"><span class="door-number">24</span></div>
-    </main>
-
-    <div id="popup-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2>>> Un poco de vocabulario</h2>
-            <p>
+<div id="popup-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>>> Un poco de vocabulario</h2>
+        <p>
 AI is the broad idea: getting machines to do “intelligent” tasks (see, read, decide).
 Machine learning (ML) is one way to build AI: instead of coding all rules by hand, we let a model learn from data.
 Deep learning is a sub-field of ML using deep neural networks, very good for images, text, audio.
 Data is the raw material that makes learning possible.
-            </p>
-        </div>
+        </p>
     </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const door1 = document.getElementById('door-1');
-            const modal = document.getElementById('popup-modal');
-            const closeButton = document.querySelector('.close-button');
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const door1 = document.getElementById('door-1');
+        const modal = document.getElementById('popup-modal');
+        const closeButton = document.querySelector('.close-button');
 
-            // 1. Abrir el modal (Case 1)
-            if (door1) {
-                door1.addEventListener('click', () => {
-                    modal.style.display = 'block';
-                });
-            }
+        // Ouvrir
+        door1.addEventListener('click', () => {
+            modal.style.display = 'block';
+            console.log("%c[CYBER-XMAS] Kernel gift module loaded 🎁", "color:#0aff9d");
+        });
 
-            // 2. Cerrar el modal (X)
-            if (closeButton) {
-                closeButton.addEventListener('click', () => {
-                    modal.style.display = 'none';
-                });
-            }
+        // Fermer
+        closeButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
 
-            // 3. Cerrar el modal (click fuera)
-            window.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) modal.style.display = 'none';
+        });
 
-            // 4. Efectos visuales aleatorios (rotación leve)
-            const doors = document.querySelectorAll('.door');
-            doors.forEach(door => {
-                const randomRotation = Math.floor(Math.random() * 4) - 2;
-                door.style.transform = `rotate(${randomRotation}deg)`;
-            });
+        // Effet rotation
+        document.querySelectorAll('.door').forEach(door => {
+            const r = Math.floor(Math.random() * 4) - 2;
+            door.style.transform = `rotate(${r}deg)`;
+        });
 
-            // 5. Consola Geeks: Simular logs de errores festivos en la consola (Ctrl+Shift+I)
-            console.log("%c[NAVIDAD.LOG] Inicializando sistema de entrega de regalos...", "color: #FFD700; font-weight: bold; background-color: #C70039; padding: 2px 5px;");
-
-            const nonActiveDoors = document.querySelectorAll('.door:not(#door-1)');
-            nonActiveDoors.forEach(door => {
-                door.addEventListener('click', () => {
-                    console.error(`ERROR 503: Servicio no disponible. El Elfo Programador para el día ${door.dataset.day} está actualmente tomando CHOCOLATE CALIENTE.`);
-                    console.warn("ADVERTENCIA: No intente abrir los regalos antes de la fecha. Esto afectará el 'Karma Navideño'.");
-                });
+        // Messages tech fun pour cases non actives
+        document.querySelectorAll('.door:not(#door-1)').forEach(door => {
+            door.addEventListener('click', () => {
+                console.error(`ACCESS DENIED: La case ${door.dataset.day} est chiffrée 🔐.`);
+                console.warn("Conseil : Attendez la date officielle pour décrypter 😉");
             });
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>
