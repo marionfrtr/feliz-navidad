@@ -3,58 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protocolo de Adviento [V. 2.5.1] 🎁</title>
+    <title>Kernel de Navidad Santa-Net v3.0 🎁</title>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        @import url('https://fonts.com/css2?family=Press+Start+2P&display=swap');
 
         :root {
-            --santa-red: #D62828; 
-            --elf-green: #298E46; 
-            --gold-star: #FFC000; 
-            --deep-code: #1E1E1E; /* Fondo oscuro de consola */
-            --white: #F0F0F0;
-            --terminal-green: #00FF00; /* Verde de terminal */
+            --santa-red: #C70039; /* Rojo de Papa Noel */
+            --elf-green: #008000; /* Verde de Elfo Clásico */
+            --gold-star: #FFD700; /* Oro Puro */
+            --deep-code: #1A1A1A; /* Negro Oscuro de Consola */
+            --snow-white: #FAFAFA;
+            --terminal-green: #00FF7F; /* Verde Claro de Terminal (Más festivo) */
         }
 
         body {
             font-family: 'Press Start 2P', cursive;
             background-color: var(--deep-code);
-            color: var(--terminal-green); /* Color de texto de terminal */
+            color: var(--terminal-green); 
             text-align: center;
             margin: 0;
             padding: 20px;
-            /* Patrón de fondo que simula un código binario o la nieve cayendo */
-            background-image: radial-gradient(var(--elf-green) 1px, transparent 1px),
-                              radial-gradient(var(--santa-red) 1px, var(--deep-code) 1px);
+            /* Patrón de estrellas doradas y rojas sobre fondo verde oscuro */
+            background-color: var(--elf-green);
+            background-image: radial-gradient(var(--gold-star) 1px, transparent 1px),
+                              radial-gradient(var(--santa-red) 1px, var(--elf-green) 1px);
             background-size: 20px 20px;
             background-position: 0 0, 10px 10px;
         }
 
         header h1 {
             font-size: 2.5em;
-            color: var(--gold-star);
-            text-shadow: 4px 4px var(--santa-red);
+            color: var(--snow-white);
+            text-shadow: 4px 4px var(--santa-red), 8px 8px var(--elf-green); /* Doble sombra navideña */
             margin-bottom: 5px;
         }
 
         header p {
             font-size: 0.8em;
             margin-bottom: 40px;
-            color: var(--white);
+            color: var(--snow-white);
+            animation: blink 1.5s infinite; /* Animación de parpadeo */
+        }
+        
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0.5; }
         }
 
         /* Grilla del Calendario */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
+            gap: 12px; 
             max-width: 900px;
             margin: 0 auto;
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.1); /* Transparente blanco para simular hielo/nieve */
-            border: 5px solid var(--elf-green); 
-            box-shadow: 0 0 10px var(--gold-star); 
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.15); /* Efecto Nieve/Hielo */
+            border: 6px solid var(--gold-star); 
+            box-shadow: 0 0 15px var(--santa-red); 
         }
 
         /* Estilo de las Puertas/Casillas */
@@ -62,17 +69,17 @@
             position: relative;
             height: 100px;
             background-color: var(--santa-red);
-            border: 3px solid var(--gold-star);
+            border: 4px solid var(--snow-white);
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 2em;
             font-weight: bold;
-            color: var(--white);
+            color: var(--snow-white);
             cursor: default;
-            transition: transform 0.1s ease, box-shadow 0.1s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             user-select: none;
-            box-shadow: 4px 4px 0px var(--elf-green); /* Sombra 8-bit navideña */
+            box-shadow: 6px 6px 0px var(--deep-code); 
             padding: 0;
         }
 
@@ -84,8 +91,8 @@
         }
 
         #door-1:hover {
-            transform: translate(-2px, -2px); 
-            box-shadow: 6px 6px 0px var(--santa-red);
+            transform: translate(-3px, -3px); 
+            box-shadow: 9px 9px 0px var(--santa-red);
         }
         
         /* Número de la Casilla */
@@ -105,8 +112,7 @@
             width: 100%; 
             height: 100%; 
             overflow: auto; 
-            background-color: rgba(0,0,0,0.95);
-            backdrop-filter: blur(2px);
+            background-color: rgba(0,0,0,0.98);
             padding-top: 50px;
         }
 
@@ -114,27 +120,26 @@
             background-color: var(--deep-code);
             color: var(--terminal-green);
             margin: 5% auto;
-            padding: 20px;
-            border: 4px dashed var(--white); /* Borde de código */
+            padding: 25px;
+            border: 3px double var(--gold-star); /* Borde doble festivo */
             width: 80%; 
-            max-width: 500px;
-            box-shadow: 0 0 15px var(--elf-green);
-            animation: typeEffect 1.5s steps(30, end) forwards;
-            overflow: hidden; /* Oculta el texto hasta que se "teclee" */
+            max-width: 550px;
+            box-shadow: 0 0 20px var(--elf-green);
+            animation: typeEffect 1.8s steps(40, end) forwards;
+            overflow: hidden; 
             white-space: pre-wrap;
             text-align: left;
         }
         
-        /* Animación de Typewriter (para el toque de consola) */
         @keyframes typeEffect {
             from { width: 0 }
             to { width: 100% }
         }
 
         .modal-content h2 {
-            color: var(--gold-star);
+            color: var(--santa-red);
             font-size: 1.2em;
-            border-bottom: 2px solid var(--santa-red);
+            border-bottom: 2px solid var(--gold-star);
             padding-bottom: 5px;
             margin-bottom: 10px;
         }
@@ -147,13 +152,14 @@
 
         /* Botón de Cierre (X) */
         .close-button {
-            color: var(--santa-red);
+            color: var(--snow-white);
             float: right;
             font-size: 30px;
             font-weight: bold;
             line-height: 1;
             padding-left: 10px;
             cursor: pointer;
+            text-shadow: 1px 1px var(--santa-red);
         }
 
         .close-button:hover,
@@ -165,8 +171,10 @@
 <body>
 
     <header>
-        <h1>[ SANTA-OS ] V. 12.24.2025</h1>
-        <p>Ejecuta la rutina de descompresión de datos (Solo Casilla 1 responde)</p>
+        <h1>Calendario de Advento</h1>
+        <p>Porque hace tiempo que quieres aprender más cosas sobre inteligencia artificial y data 🌟</p>
+   <p>Te quiero mi po</p>
+
     </header>
 
     <main class="calendar-grid">
@@ -202,13 +210,12 @@
     <div id="popup-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
-            <h2>>> Ejecutando Día 1: 'Inicio_De_Ruta.bin'</h2>
+            <h2>>> Un poco de vocabulario</h2>
             <p>
-                [00:01] INFO: Diciembre 01, 2025. ¡Proceso de Adviento **iniciado**!<br>
-                [00:03] LOG: `Verificando estado del servidor Polo Norte... [OK]`<br>
-                [00:05] WARNING: Se ha detectado una alta concentración de **azúcar** en el sector de galletas.<br>
-                [00:08] DATA: El primer regalo del día es un **manual de usuario** para un trineo auto-conducido. ¡A programar!<br>
-                [00:10] EXIT: Proceso 'Dia_1.exe' **finalizado** con éxito. Cierre para continuar.
+AI is the broad idea: getting machines to do “intelligent” tasks (see, read, decide).
+Machine learning (ML) is one way to build AI: instead of coding all rules by hand, we let a model learn from data.
+Deep learning is a sub-field of ML using deep neural networks, very good for images, text, audio.
+Data is the raw material that makes learning possible.
             </p>
         </div>
     </div>
@@ -247,14 +254,14 @@
                 door.style.transform = `rotate(${randomRotation}deg)`;
             });
 
-            // 5. Consola Geeks: Simular logs de errores en la consola (Ctrl+Shift+I)
-            console.log("%c[SYSTEM] Protocolo de Adviento iniciado. Versión: 2.5.1", "color: #00FF00; font-weight: bold;");
+            // 5. Consola Geeks: Simular logs de errores festivos en la consola (Ctrl+Shift+I)
+            console.log("%c[NAVIDAD.LOG] Inicializando sistema de entrega de regalos...", "color: #FFD700; font-weight: bold; background-color: #C70039; padding: 2px 5px;");
 
             const nonActiveDoors = document.querySelectorAll('.door:not(#door-1)');
             nonActiveDoors.forEach(door => {
                 door.addEventListener('click', () => {
-                    console.error(`ERROR 404: Archivo 'Sorpresa_Dia_${door.dataset.day}.dat' NO ENCONTRADO o aún está encriptado.`);
-                    console.warn("ADVERTENCIA: Intento de acceso denegado. Se requiere clave de fecha.");
+                    console.error(`ERROR 503: Servicio no disponible. El Elfo Programador para el día ${door.dataset.day} está actualmente tomando CHOCOLATE CALIENTE.`);
+                    console.warn("ADVERTENCIA: No intente abrir los regalos antes de la fecha. Esto afectará el 'Karma Navideño'.");
                 });
             });
         });
